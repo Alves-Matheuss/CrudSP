@@ -1,0 +1,39 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'produtos/style.css' %}">
+    <title>Lista de Produtos</title>
+    <style>
+        /* Estilos CSS (iguais aos do adicionar.html) */
+    </style>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <a href="{% url 'adicionar_produto' %}">Adicionar Produto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.descricao }}</td>
+                    <td>{{ produto.preco }} {{ produto.get_unidade_medida_display }}</td>
+                    <td>{{ produto.estoque }} {{ produto.get_unidade_medida_display }}</td>
+                    <td>
+                        <a href="{% url 'editar_produto' produto.id %}">Editar</a>
+                        <a href="{% url 'deletar_produto' produto.id %}">Deletar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

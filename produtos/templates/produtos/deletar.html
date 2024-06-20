@@ -1,0 +1,21 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'produtos/style.css' %}">
+    <title>Deletar Produto</title>
+    <style>
+        /* Estilos CSS (iguais aos do adicionar.html) */
+    </style>
+</head>
+<body>
+    <h1>Deletar Produto</h1>
+
+    <p>Tem certeza que deseja deletar o produto "{{ produto.nome }}?"</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+        <a href="{% url 'listar_produtos' %}">Cancelar</a>
+    </form>
+</body>
+</html>
